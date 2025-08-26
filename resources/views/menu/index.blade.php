@@ -107,7 +107,13 @@
                                                 <td>{{ $row['active'] }}</td>
                                                 <td class="text-end">
                                                     <a href="{{ route('menu.edit',$row->id) }}"><i class="las la-pen text-secondary fs-18"></i></a>
-                                                    <a href="{{ route('menu.delete',$row->id) }}"><i class="las la-trash-alt text-secondary fs-18"></i></a>
+                                                    <form action="{{ route('menu.delete', $row->id) }}" method="POST" style="display:inline;" class="delete-form">
+                                                        @csrf
+                                                        @method('DELETE')
+                                                        <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('Are you sure?');">
+                                                            <i class="las la-trash-alt"></i>
+                                                        </button>
+                                                    </form>
                                                 </td>
                                             </tr>
                                         @endforeach
